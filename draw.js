@@ -22,11 +22,11 @@ let snake;
         if(snake.eatFruit(fruit)){//////////////////////////////////////////////////////SNAKE GAME HOUR 4 BEGINNING/////////////////////////
             fruit.pickLocation();
         }
-    },1000);
+        snake.snakeCollisionCheck();
+    },250);
 //////////////////////////////////////////////////////SNAKE GAME HOUR 3 BEGINNING/////////////////////////
     window.addEventListener('keydown',((evt) => { //Introduce what are eventListeners an what is a window?
         const direction = evt.key.replace('Arrow', '');//HW for part 2, implement more keys for 
-        console.log(direction);
         snake.changeDirection(direction);
     }))
 }());

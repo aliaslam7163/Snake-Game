@@ -5,7 +5,7 @@ function Snake(){
     this.xSpeed = scale * 1; //horizontal speed SNAKE GAME HOUR 2 BEGINNING/////////////////////////
     this.ySpeed = 0; //vertical speed SNAKE GAME HOUR 2 BEGINNING/////////////////////////
     this.total = 0;  /////////////SNAKE GAME HOUR 4 BEGINNING/////////////////////////
-    this.snakeBody = [];
+    this.snakeBody = []; /////////////SNAKE GAME HOUR 4 BEGINNING/////////////////////////
 
     this.draw = function(){
         ctx.fillStyle = '#FFFFFF';
@@ -19,11 +19,19 @@ function Snake(){
  
         for(let i = 0; i < this.snakeBody.length - 1;i++)
         {
-            
             this.snakeBody[i] = this.snakeBody[i+1]; //We loop over the whole snake, and 
-            console.log(i,this.total,this.snakeBody[i],this.snakeBody[i+1]);
         }
-        this.snakeBody[this.total - 1] = {x:this.x, y:this.y}; //This creates the lead, the snake's head because when length is zero, surely there must be a head?
+        // console.log("Array is: " , this.snakeBody );
+
+        //////////////////////////////////////////////////////SNAKE GAME HOUR 5 BEGINNING/////////////////////////
+        if(this.total > 0) //////////////////////////////////////////////////////SNAKE GAME HOUR 5 BEGINNING/////////////////////////
+            this.snakeBody[this.total - 1] = {x:this.x, y:this.y}; //This creates the lead, the snake's head because when length is zero, surely there must be a head?
+        //////////////////////////////////////////////////////SNAKE GAME HOUR 5 BEGINNING/////////////////////////
+
+
+
+
+
 
         this.x += this.xSpeed; // HW make the assignment for end of hour 2 be to make the blinking light moving perfectly diagonally across canvas
         this.y += this.ySpeed;
@@ -74,10 +82,21 @@ this.eatFruit = function(fruit){
     if(this.x == fruit.x && this.y == fruit.y){
         console.log("Eating fruit. NOM NOM NOM");
         this.total++;
-        console.log(this.snakeBody.length,this.snakeBody);
+        // console.log(`Length: ${this.snakeBody.length}`, this.snakeBody ,`Total: ${this.total}`);
         return true;
     }
     return false;
+}
+
+this.snakeCollisionCheck = function(){
+    for(let i = 0; i < this.snakeBody.length - 1; i++){
+        if(this.x === this.snakeBody[i].x && this.y === this.snakeBody[i].y){
+            this.total = 0;
+            this.snakeBody = [];
+            this.x = 0;
+            this.y = 0;
+        }
+    }
 }
 
 }
